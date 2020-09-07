@@ -1,9 +1,18 @@
-import * as cdk from '@aws-cdk/core';
+import { Construct, Stack, StackProps } from "@aws-cdk/core";
+import { NodejsFunction } from "@aws-cdk/aws-lambda-nodejs";
 
-export class UniversalNodejsFunctionStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+interface UniversalNodejsFunctionStackProps extends StackProps {
+  channelId: string;
+}
+
+export class UniversalNodejsFunctionStack extends Stack {
+  constructor(scope: Construct, id: string, props: UniversalNodejsFunctionStackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
+    new NodejsFunction(this, 'notification', {
+      environment: {
+        CHANNEL_ID: props.channelId
+      }
+    });
   }
 }

@@ -4,4 +4,4 @@ import * as cdk from '@aws-cdk/core';
 import { UniversalNodejsFunctionStack } from '../lib/universal-nodejs-function-stack';
 
 const app = new cdk.App();
-new UniversalNodejsFunctionStack(app, 'UniversalNodejsFunctionStack');
+new UniversalNodejsFunctionStack(app, 'UniversalNodejsFunctionStack', {channelId: 'whatever'});
